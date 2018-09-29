@@ -1,10 +1,11 @@
+#import selenium
 from selenium import webdriver
 #System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
 #WebDriver driver = new ChromeDriver();
 
 class Driver:
-    def __ini__(self):
-        self.instance = webdriver.chrome()
+    def __init__(self):
+        self.instance = webdriver.Chrome()
 
 
     def navigate(self, url):
