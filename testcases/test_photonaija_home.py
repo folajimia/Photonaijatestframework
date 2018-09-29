@@ -18,13 +18,13 @@ class TestPhotoNaija(unittest.TestCase):
         home_screen = homescreen.HomeScreen(self.driver)
         home_screen.validate_title_is_present()
         home_screen.validate_icon_is_present()
-        home_screen.validate_menu_options_are_present()
-        home_screen.validdate_posts_are_visible()
-        home_screen.validate_social_media_links()
+        home_screen.validate_top_menu_is_present()
+        #home_screen.validate_posts_are_visible()
+        home_screen.validate_instagram_button_is_displayed()
 
 
     def tearDown(self):
-        self.webdriver.driver.instance.quit()
+        self.driver.instance.quit()
 
 
 
