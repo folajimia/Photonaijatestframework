@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from helpers.basepage import BasePage
+from pageobjects.basepage import BasePage
 
 from values import strings
 
@@ -18,7 +18,10 @@ class HomeScreen(BasePage):
         #self.instagram_button = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "instagram")))
         #self.linked_button = WebDriverWait(self.driver.instance,10).until((EC.visibility_of_element_located(By.XPATH,"")))
 
-    #def validate_title_is_present(self):
+
+    #def validate_product_bar_is_visible(self):
+     #   assert (self.product_bar) > 0
+    # def validate_title_is_present(self):
     #    assert self.title.is_displayed()
     #def validate_icon_is_present(self):
     #    assert self.icon.is_displayed()

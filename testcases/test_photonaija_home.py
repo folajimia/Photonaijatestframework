@@ -1,9 +1,16 @@
 import unittest
+import pytest
+import allure
+
+from selenium import webdriver
 from drivers.webdriver import Driver
 #from drivers import webdriver
 #from selenium import Driver
 from values import strings
 from pageobjects import homescreen
+
+
+
 
 
 
@@ -21,6 +28,7 @@ class TestPhotoNaija(unittest.TestCase):
         home_screen.validate_top_menu_is_present()
         #home_screen.validate_posts_are_visible()
         home_screen.validate_instagram_button_is_displayed()
+        #home_screen.validate_product_bar_is_visible()
 
 
     def tearDown(self):

@@ -24,6 +24,6 @@ class BasePage:
         service_screen_link = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "sf-depth-1")))
         assert service_screen_link.is_displayed()
         service_screen_link.click()
-        
+
 
 
