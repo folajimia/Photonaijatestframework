@@ -2,6 +2,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from pageobjects.basepage import BasePage
+import pytest
+import allure
+
 
 from values import strings
 
@@ -17,7 +20,12 @@ class HomeScreen(BasePage):
         #self.post_list = WebDriverWait(self.driver.instance, 10).until((EC.visibility_of_element_located(By.TAG_NAME, "article")))
         #self.instagram_button = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "instagram")))
         #self.linked_button = WebDriverWait(self.driver.instance,10).until((EC.visibility_of_element_located(By.XPATH,"")))
+        self.service_product_link = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "sf-depth-1")))
 
+    @pytest.allure.step("Click the product link menu button")
+    def click_service_product_link(self):
+        assert self.service_product_link.is_displayed()
+        self.service_product_link.click()
 
     #def validate_product_bar_is_visible(self):
      #   assert (self.product_bar) > 0
