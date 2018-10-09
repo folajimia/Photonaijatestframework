@@ -4,6 +4,8 @@ import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
+from selenium import webdriver
 
 
 
@@ -16,6 +18,7 @@ class ServiceScreen(BasePage):
     def __init__(self, driver):
         self.driver = driver
         self.page_title = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.ID, "page-title")))
+        self.page_title_label = self.driver.find_element_by_class_name("current-stage").getText("my text")
 
         self.photo_book_design_image = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="block-system-main"]/div/div/div/div[1]/div[1]/div/div/a/img')))
         self.referral_service_image = WebDriverWait(self.driver.instance,10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="block-system-main"]/div/div/div/div[2]/div[1]/div/div/a/img')))
@@ -27,10 +30,10 @@ class ServiceScreen(BasePage):
         #assert self.page_title.
 
     def validate_photo_book_design_image(self):
-        assert self.photo_book_design_image()
+        assert self.photo_book_design_image.is_displayed()
 
     def validate_referral_service_image(self):
-        assert self.referral_service_image()
+        assert self.referral_service_image.is_displayed()
 
 
 
