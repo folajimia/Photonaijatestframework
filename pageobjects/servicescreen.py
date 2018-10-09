@@ -17,10 +17,20 @@ class ServiceScreen(BasePage):
         self.driver = driver
         self.page_title = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.ID, "page-title")))
 
-    @pytest.allure.step("Validate page title is visible")
+        self.photo_book_design_image = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="block-system-main"]/div/div/div/div[1]/div[1]/div/div/a/img')))
+        self.referral_service_image = WebDriverWait(self.driver.instance,10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="block-system-main"]/div/div/div/div[2]/div[1]/div/div/a/img')))
+
+
+    #@pytest.allure.step("Validate page title is visible")
     def validate_page_title_is_visible(self):
         assert self.page_title.is_displayed()
+        #assert self.page_title.
 
+    def validate_photo_book_design_image(self):
+        assert self.photo_book_design_image()
+
+    def validate_referral_service_image(self):
+        assert self.referral_service_image()
 
 
 
