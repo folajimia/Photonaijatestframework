@@ -29,6 +29,7 @@ class TestPhotoNaija(unittest.TestCase):
         self.home_screen = homescreen.HomeScreen(self.driver)
         self.home_screen.click_service_screen_link()
         self.service_screen = servicescreen.ServiceScreen(self.driver)
+        #self.driver.instance.find_element_by_id()
 
 
 
@@ -71,13 +72,15 @@ class TestPhotoNaija(unittest.TestCase):
     @pytest.allure.step("Validate the inPage title is visible on the service page")
     def test_service_screen_page_tile(self):
         self.service_screen.validate_page_title_is_visible()
+
+
     @pytest.allure.step("Validate the photo book design image s visible")
     def test_service_screen_photo_book_design_image_is_visible(self):
         self.service_screen.validate_photo_book_design_image()
 
-    @pytest.allure.step("Validate the photo book referral service image is visible ")
-    def test_service_screen_photo_referral_image(self):
-        self.service_screen.validate_referral_service_image()
+    #@pytest.allure.step("Validate the photo book referral service image is visible ")
+    #def test_service_screen_photo_referral_image(self):
+    #    self.service_screen.validate_referral_service_image()
 
 
     def tearDown(self):
