@@ -82,6 +82,10 @@ class TestPhotoNaija(unittest.TestCase):
     def test_service_screen_social_feed(self):
         self.service_screen.validate_social_feed()
 
+    @pytest.allure.step("Validate that the social feed is available")
+    def test_service_screen_share_icons(self):
+        self.service_screen.validate_share_icons()
+
     #@pytest.allure.step("Validate the photo book referral service image is visible ")
     #def test_service_screen_photo_referral_image(self):
     #    self.service_screen.validate_referral_service_image()
