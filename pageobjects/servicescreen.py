@@ -22,9 +22,14 @@ class ServiceScreen(BasePage):
         self.page_title = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.ID, "page-title")))
         self.page_title_label = self.driver.instance.find_element_by_id("page-title").text
         self.photo_book_design_image = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="block-system-main"]/div/div/div/div/div[1]/div/div/a/img')))
-        self.photo_book_design_link = WebDriverWait(self.driver.instance,10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'views-field views-field-title')))
+        self.photo_book_design_link = WebDriverWait(self.driver.instance,10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#block-system-main > div > div > div > div > div.views-field.views-field-title > h2 > a')))
+        self.photo_book_design_explain = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="block-system-main"]/div/div/div/div/div[3]/div/p')))
+        self.photo_book_design_price = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="block-system-main"]/div/div/div/div/div[4]/div')))
+        self.photo_book_design_read_more_button = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="block-system-main"]/div/div/div/div/div[5]/span/a')))
+        self.social_feed = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'instagram-social-feed')))
+
         #self.photo_book_design_label = self.driver.instance.find_element_by_id("page-title").text
-        #print(self.page_title_label)
+        print(self.photo_book_design_read_more_button.text)
 
 
     #@pytest.allure.step("Validate page title is visible")
@@ -35,11 +40,18 @@ class ServiceScreen(BasePage):
 
     def validate_photo_book_design_image(self):
         assert self.photo_book_design_image.is_displayed()
-        assert self.photo_book_design_image.is_displayed()
-        assert self.photo_book_design_link.text == 'PHOTOBOOK DESIGN'
+        assert self.photo_book_design_link.is_displayed()
+        assert self.photo_book_design_explain.is_displayed()
+        assert self.photo_book_design_price.is_displayed()
+        assert self.photo_book_design_read_more_button.is_displayed()
 
-    #def validate_referral_service_image(self):
-    #    assert self.referral_service_image.is_displayed()
+        assert self.photo_book_design_link.text == 'PHOTOBOOK DESIGN'
+        assert self.photo_book_design_explain.text == 'Not experienced in Photobook designs or simply too busy to handle that task ? Photonaija can help...'
+        assert self.photo_book_design_price.text == '₦10,000.00'
+        assert self.photo_book_design_read_more_button.text == 'READ MORE'
+
+    def validate_social_feed(self):
+        assert self.social_feed.is_displayed()
 
 
 

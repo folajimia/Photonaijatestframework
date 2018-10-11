@@ -49,24 +49,24 @@ class TestPhotoNaija(unittest.TestCase):
     def test_home_screen_instagram(self):
         self.home_screen.validate_instagram_button_is_displayed()
 
-
-    #def test_services_screen_components(self):
+    @pytest.allure.step("common pag components")
+    def test_services_screen_common_components(self):
         #home_screen = homescreen.HomeScreen(self.driver)
     #Service page tests
-    @pytest.allure.step("Validate Site title is visible on the service page")
-    def test_service_screen_site_title(self):
+    #@pytest.allure.step("Validate Site title is visible on the service page")
+    #def test_service_screen_site_title(self):
         self.service_screen.validate_title_is_present()
 
-    @pytest.allure.step("Validate Site icon is visible on the service page")
-    def test_service_screen_site_icon(self):
+    #@pytest.allure.step("Validate Site icon is visible on the service page")
+    #def test_service_screen_site_icon(self):
         self.service_screen.validate_icon_is_present()
 
-    @pytest.allure.step("Validate top menu is visible on the service page")
-    def test_service_screen_top_menu(self):
+    #@pytest.allure.step("Validate top menu is visible on the service page")
+    #def test_service_screen_top_menu(self):
         self.service_screen.validate_top_menu_is_present()
 
-    @pytest.allure.step("Validate instagram button is visible on the service page")
-    def test_service_screen_instagram(self):
+    #@pytest.allure.step("Validate instagram button is visible on the service page")
+    #def test_service_screen_instagram(self):
         self.service_screen.validate_instagram_button_is_displayed()
 
     @pytest.allure.step("Validate the inPage title is visible on the service page")
@@ -78,9 +78,14 @@ class TestPhotoNaija(unittest.TestCase):
     def test_service_screen_photo_book_design_image_is_visible(self):
         self.service_screen.validate_photo_book_design_image()
 
+    @pytest.allure.step("Validate that the social feed is available")
+    def test_service_screen_social_feed(self):
+        self.service_screen.validate_social_feed()
+
     #@pytest.allure.step("Validate the photo book referral service image is visible ")
     #def test_service_screen_photo_referral_image(self):
     #    self.service_screen.validate_referral_service_image()
+
 
 
     def tearDown(self):
