@@ -20,12 +20,10 @@ click==6.7
 clint==0.5.1
 clyent==1.2.1
 constantly==15.1.0
-cryptography==2.2.2
 cycler==0.10.0
 decorator==4.0.11
 dlib==19.9.0
 entrypoints==0.2.2
-Flask==0.12.1
 gast==0.2.0
 grpcio==1.10.0
 -e git+https://github.com/openai/gym.git@5f8d1fc1c6ea8a7dab44fcdab8a4ac1c24ba6759#egg=gym
