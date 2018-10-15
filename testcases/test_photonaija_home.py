@@ -24,12 +24,12 @@ from pageobjects import homescreen,servicescreen
 class TestPhotoNaija(unittest.TestCase):
 
     def setUp(self):
-        self.driver = Driver()
+        self.driver = Driver('firefox')
         self.driver.navigate(strings.base_url)
         self.home_screen = homescreen.HomeScreen(self.driver)
         self.home_screen.click_service_screen_link()
         self.service_screen = servicescreen.ServiceScreen(self.driver)
-        #self.driver.instance.find_element_by_id()
+        #self.driver.
 
 
 

@@ -1,12 +1,22 @@
 #import selenium
 from selenium import webdriver
 #System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+#System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver")
 #WebDriver driver = new ChromeDriver();
 
 class Driver:
-    def __init__(self):
-        self.instance = webdriver.Chrome()
 
+    def __init__(self, browser_type):
+        if browser_type.lower() == 'firefox':
+            self.instance = webdriver.Firefox()
+        elif browser_type.lower() == 'ie':
+            self.instance = webdriver.Ie()
+        elif browser_type.lower() == 'chrome':
+            self.instance = webdriver.Chrome()
+        elif browser_type.lower() == 'opera':
+            self.instance = webdriver.Opera()
+        else:
+            print("Browser is not available")
 
     def navigate(self, url):
         if isinstance(url, str):
