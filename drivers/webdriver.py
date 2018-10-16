@@ -15,6 +15,8 @@ class Driver:
             self.instance = webdriver.Chrome()
         elif browser_type.lower() == 'opera':
             self.instance = webdriver.Opera()
+        elif browser_type.lower() == 'safari':
+            self.instance = webdriver.Safari()
         else:
             print("Browser is not available")
 

@@ -12,19 +12,24 @@ from values import strings
 from pageobjects import homescreen,servicescreen
 
 
-
-
-
-
-
-
-
+##def driver():
+##    return [Driver('safari'), Driver('chrome'), Driver('firefox')]
+##
+##def home_screen(driver)
+##    home_screen = homescreen.HomeScreen(driver)
+##    home_screen.click_service_screen_link()
+##    return home_screen
+#
+#
+#@pytest.allure.step("Validate Site title is visible")
+#def test_home_screen_site_title(home_screen):
+#    home_screen.validate_title_is_present()
 
 
 class TestPhotoNaija(unittest.TestCase):
 
     def setUp(self):
-        self.driver = Driver('firefox')
+        self.driver = Driver('chrome')
         self.driver.navigate(strings.base_url)
         self.home_screen = homescreen.HomeScreen(self.driver)
         self.home_screen.click_service_screen_link()
@@ -94,6 +99,16 @@ class TestPhotoNaija(unittest.TestCase):
 
     def tearDown(self):
         self.driver.instance.quit()
+
+
+class TestPhotoNaijaFirefox(TestPhotoNaija):
+    def setUp(self):
+        self.driver = Driver('firefox')
+        self.driver.navigate(strings.base_url)
+        self.home_screen = homescreen.HomeScreen(self.driver)
+        self.home_screen.click_service_screen_link()
+        self.service_screen = servicescreen.ServiceScreen(self.driver)
+
 
 
 
