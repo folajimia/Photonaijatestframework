@@ -3,9 +3,11 @@ import pytest
 import allure
 import os
 import sys
+#from drivers.browserstack import BrowserStackDriver
 sys.path.insert(0, '/users/jimiadekoya/pythonAutomationFramework')
 from selenium import webdriver
 from drivers.webdriver import Driver
+#from drivers.browserstack import BrowserStackDriver
 #from drivers import webdriver
 #from selenium import Driver
 from values import strings
@@ -38,6 +40,31 @@ class TestPhotoNaija(unittest.TestCase):
 
 
 
+    #def setUp(self):
+    #    #desired_cap = {
+    #    #    'browser': 'Edge',
+    #    #    'browser_version': '16.0',
+    #    #    'os': 'Windows',
+    #    #    'os_version': '10',
+    #    #    'resolution': '1024x768'
+    #    #}
+#
+    #    #USERNAME = 'username'
+    #    #PASSWORD = 'access'
+#
+    #    #self.driver = webdriver.Remote(command_executor='http://%s:%s@hub.browserstack.com:80/wd/hub' % (USERNAME, PASSWORD),
+    #    #                               desired_capabilities=desired_cap)
+    #    #self.driver.get(strings.base_url)
+    #    #self.driver.navigate(strings.base_url)
+    #    self.driver = BrowserStackDriver('edge')
+    #    self.driver.navigate(strings.base_url)
+    #    self.home_screen = homescreen.HomeScreen(self.driver)
+    #    self.home_screen.click_service_screen_link()
+    #    self.service_screen = servicescreen.ServiceScreen(self.driver)
+    #    # self.driver.
+
+
+
     @pytest.allure.step("Validate Site title is visible")
     def test_home_screen_site_title(self):
         self.home_screen.validate_title_is_present()
@@ -56,22 +83,9 @@ class TestPhotoNaija(unittest.TestCase):
 
     @pytest.allure.step("common pag components")
     def test_services_screen_common_components(self):
-        #home_screen = homescreen.HomeScreen(self.driver)
-    #Service page tests
-    #@pytest.allure.step("Validate Site title is visible on the service page")
-    #def test_service_screen_site_title(self):
         self.service_screen.validate_title_is_present()
-
-    #@pytest.allure.step("Validate Site icon is visible on the service page")
-    #def test_service_screen_site_icon(self):
         self.service_screen.validate_icon_is_present()
-
-    #@pytest.allure.step("Validate top menu is visible on the service page")
-    #def test_service_screen_top_menu(self):
         self.service_screen.validate_top_menu_is_present()
-
-    #@pytest.allure.step("Validate instagram button is visible on the service page")
-    #def test_service_screen_instagram(self):
         self.service_screen.validate_instagram_button_is_displayed()
 
     @pytest.allure.step("Validate the inPage title is visible on the service page")
@@ -107,7 +121,17 @@ class TestPhotoNaijaFirefox(TestPhotoNaija):
         self.driver.navigate(strings.base_url)
         self.home_screen = homescreen.HomeScreen(self.driver)
         self.home_screen.click_service_screen_link()
-        self.service_screen = servicescreen.ServiceScreen(self.driver)
+       self.service_screen = servicescreen.ServiceScreen(self.driver)
+
+#class TestPhotoNaija(TestPhotoNaija):
+#
+#    def setUp(self):
+#        self.driver = BrowserStackDriver('edge')
+#        self.driver.navigate(strings.base_url)
+#        self.home_screen = homescreen.HomeScreen(self.driver)
+#        self.home_screen.click_service_screen_link()
+#        self.service_screen = servicescreen.ServiceScreen(self.driver)
+#        #self.driver.
 
 
 
