@@ -3,8 +3,8 @@ import pytest
 import allure
 import os
 import sys
-#from drivers.browserstack import BrowserStackDriver
 sys.path.insert(0, '/users/jimiadekoya/pythonAutomationFramework')
+from drivers.browserstack import BrowserStackDriver
 from selenium import webdriver
 from drivers.webdriver import Driver
 #from drivers.browserstack import BrowserStackDriver
@@ -37,31 +37,6 @@ class TestPhotoNaija(unittest.TestCase):
         self.home_screen.click_service_screen_link()
         self.service_screen = servicescreen.ServiceScreen(self.driver)
         #self.driver.
-
-
-
-    #def setUp(self):
-    #    #desired_cap = {
-    #    #    'browser': 'Edge',
-    #    #    'browser_version': '16.0',
-    #    #    'os': 'Windows',
-    #    #    'os_version': '10',
-    #    #    'resolution': '1024x768'
-    #    #}
-#
-    #    #USERNAME = 'username'
-    #    #PASSWORD = 'access'
-#
-    #    #self.driver = webdriver.Remote(command_executor='http://%s:%s@hub.browserstack.com:80/wd/hub' % (USERNAME, PASSWORD),
-    #    #                               desired_capabilities=desired_cap)
-    #    #self.driver.get(strings.base_url)
-    #    #self.driver.navigate(strings.base_url)
-    #    self.driver = BrowserStackDriver('edge')
-    #    self.driver.navigate(strings.base_url)
-    #    self.home_screen = homescreen.HomeScreen(self.driver)
-    #    self.home_screen.click_service_screen_link()
-    #    self.service_screen = servicescreen.ServiceScreen(self.driver)
-    #    # self.driver.
 
 
 
@@ -121,18 +96,22 @@ class TestPhotoNaijaFirefox(TestPhotoNaija):
         self.driver.navigate(strings.base_url)
         self.home_screen = homescreen.HomeScreen(self.driver)
         self.home_screen.click_service_screen_link()
-       self.service_screen = servicescreen.ServiceScreen(self.driver)
+        self.service_screen = servicescreen.ServiceScreen(self.driver)
 
-#class TestPhotoNaija(TestPhotoNaija):
-#
-#    def setUp(self):
-#        self.driver = BrowserStackDriver('edge')
-#        self.driver.navigate(strings.base_url)
-#        self.home_screen = homescreen.HomeScreen(self.driver)
-#        self.home_screen.click_service_screen_link()
-#        self.service_screen = servicescreen.ServiceScreen(self.driver)
-#        #self.driver.
+    def tearDown(self):
+        self.driver.instance.quit()
 
+class TestPhotoNaijaIE(TestPhotoNaija):
+
+    def setUp(self):
+        self.driver = BrowserStackDriver('edge')
+        self.driver.navigate(strings.base_url)
+        self.home_screen = homescreen.HomeScreen(self.driver)
+        self.home_screen.click_service_screen_link()
+        self.service_screen = servicescreen.ServiceScreen(self.driver)
+        #self.driver.
+    def tearDown(self):
+        self.driver.instance.quit()
 
 
 
