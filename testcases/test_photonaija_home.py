@@ -1,17 +1,19 @@
+from drivers.webdriver import Driver
 import unittest
 import pytest
+import pyscreenshot
 import allure
 import os
 import sys
 sys.path.insert(0, '/users/jimiadekoya/pythonAutomationFramework')
 from drivers.browserstack import BrowserStackDriver
 from selenium import webdriver
-from drivers.webdriver import Driver
+
 #from drivers.browserstack import BrowserStackDriver
 #from drivers import webdriver
 #from selenium import Driver
 from values import strings
-from pageobjects import homescreen,servicescreen
+from pageobjects import homescreen, servicescreen
 
 
 ##def driver():
@@ -37,6 +39,13 @@ class TestPhotoNaija(unittest.TestCase):
         self.home_screen.click_service_screen_link()
         self.service_screen = servicescreen.ServiceScreen(self.driver)
         #self.driver.
+
+    @pytest.hookimpl(hookwrapper=True, tryfirst=True)
+    def pytest_runtest_makereport(item, call):
+        outcome = yield
+        rep = outcome.get_result()
+        setattr(item, "rep_" + rep.when, rep)
+        return rep
 
 
 
@@ -65,7 +74,13 @@ class TestPhotoNaija(unittest.TestCase):
 
     @pytest.allure.step("Validate the inPage title is visible on the service page")
     def test_service_screen_page_tile(self):
-        self.service_screen.validate_page_title_is_visible()
+        try:
+            self.service_screen.validate_page_title_is_visible()
+        except AssertionError:
+            print("failed assertion, screenshot take")
+            self.driver.save_screenshot('error.png')
+
+
 
 
     @pytest.allure.step("Validate the photo book design image s visible")
@@ -90,28 +105,28 @@ class TestPhotoNaija(unittest.TestCase):
         self.driver.instance.quit()
 
 
-class TestPhotoNaijaFirefox(TestPhotoNaija):
-    def setUp(self):
-        self.driver = Driver('firefox')
-        self.driver.navigate(strings.base_url)
-        self.home_screen = homescreen.HomeScreen(self.driver)
-        self.home_screen.click_service_screen_link()
-        self.service_screen = servicescreen.ServiceScreen(self.driver)
-
-    def tearDown(self):
-        self.driver.instance.quit()
-
-class TestPhotoNaijaIE(TestPhotoNaija):
-
-    def setUp(self):
-        self.driver = BrowserStackDriver('edge')
-        self.driver.navigate(strings.base_url)
-        self.home_screen = homescreen.HomeScreen(self.driver)
-        self.home_screen.click_service_screen_link()
-        self.service_screen = servicescreen.ServiceScreen(self.driver)
-        #self.driver.
-    def tearDown(self):
-        self.driver.instance.quit()
+#class TestPhotoNaijaFirefox(TestPhotoNaija):
+#    def setUp(self):
+#        self.driver = Driver('firefox')
+#        self.driver.navigate(strings.base_url)
+#        self.home_screen = homescreen.HomeScreen(self.driver)
+#        self.home_screen.click_service_screen_link()
+#        self.service_screen = servicescreen.ServiceScreen(self.driver)
+#
+#    def tearDown(self):
+#        self.driver.instance.quit()
+#
+#class TestPhotoNaijaIE(TestPhotoNaija):
+#
+#    def setUp(self):
+#        self.driver = BrowserStackDriver('edge')
+#        self.driver.navigate(strings.base_url)
+#        self.home_screen = homescreen.HomeScreen(self.driver)
+#        self.home_screen.click_service_screen_link()
+#        self.service_screen = servicescreen.ServiceScreen(self.driver)
+#        #self.driver.
+#    def tearDown(self):
+#        self.driver.instance.quit()
 
 
 

@@ -42,20 +42,21 @@ class ServiceScreen(BasePage):
     #@pytest.allure.step("Validate page title is visible")
     def validate_page_title_is_visible(self):
         assert self.page_title.is_displayed()
-        assert self.page_title_label == 'SERVICES'
+        assert self.page_title_label == 'SERVICESJ'
         #assert self.page_title.
 
     def validate_photo_book_design_image(self):
+
         assert self.photo_book_design_image.is_displayed()
         assert self.photo_book_design_link.is_displayed()
         assert self.photo_book_design_explain.is_displayed()
         assert self.photo_book_design_price.is_displayed()
         assert self.photo_book_design_read_more_button.is_displayed()
-
         assert self.photo_book_design_link.text == 'PHOTOBOOK DESIGN'
         assert self.photo_book_design_explain.text == 'Not experienced in Photobook designs or simply too busy to handle that task ? Photonaija can help...'
         #assert self.photo_book_design_price.text == '₦10,000.00'
         assert self.photo_book_design_read_more_button.text == 'READ MORE'
+
 
     def validate_social_feed(self):
         assert self.social_feed.is_displayed()
