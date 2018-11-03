@@ -1,6 +1,12 @@
 from drivers.webdriver import Driver
+from values import strings
+from pageobjects import homescreen, servicescreen
+from helpers import errorshots
 import unittest
 import pytest
+import os
+from datetime import datetime
+import sys
 import pyscreenshot
 import allure
 import os
@@ -12,8 +18,6 @@ from selenium import webdriver
 #from drivers.browserstack import BrowserStackDriver
 #from drivers import webdriver
 #from selenium import Driver
-from values import strings
-from pageobjects import homescreen, servicescreen
 
 
 ##def driver():
@@ -38,14 +42,16 @@ class TestPhotoNaija(unittest.TestCase):
         self.home_screen = homescreen.HomeScreen(self.driver)
         self.home_screen.click_service_screen_link()
         self.service_screen = servicescreen.ServiceScreen(self.driver)
+        self.SCREEN_DUMP_LOCATION = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), 'screendumps')
         #self.driver.
 
-    @pytest.hookimpl(hookwrapper=True, tryfirst=True)
-    def pytest_runtest_makereport(item, call):
-        outcome = yield
-        rep = outcome.get_result()
-        setattr(item, "rep_" + rep.when, rep)
-        return rep
+    #@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+    #def pytest_runtest_makereport(item, call):
+    #    outcome = yield
+    #    rep = outcome.get_result()
+    #    setattr(item, "rep_" + rep.when, rep)
+    #    return rep
 
 
 
@@ -74,11 +80,9 @@ class TestPhotoNaija(unittest.TestCase):
 
     @pytest.allure.step("Validate the inPage title is visible on the service page")
     def test_service_screen_page_tile(self):
-        try:
-            self.service_screen.validate_page_title_is_visible()
-        except AssertionError:
-            print("failed assertion, screenshot take")
-            self.driver.save_screenshot('error.png')
+        self.service_screen.validate_page_title_is_visible()
+
+
 
 
 
@@ -98,10 +102,70 @@ class TestPhotoNaija(unittest.TestCase):
     #@pytest.allure.step("Validate the photo book referral service image is visible ")
     #def test_service_screen_photo_referral_image(self):
     #    self.service_screen.validate_referral_service_image()
+    #@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+    #def pytest_runtest_makereport(item, call):
+    #    outcome = yield
+    #    rep = outcome.get_result()
+    #    setattr(item, "rep_" + rep.when, rep)
+    #    return rep
+
+
+
+
+
+
+    def take_screenshot(self,browser):
+        filename = self._get_filename() +'.png'
+        print('screenshotting to', filename)
+        browser.save_screenshot(filename)
+
+    def dump_html(self, browser):
+        filename = self._get_filename() + '.html'
+        print('dumping page HTML to', filename)
+        with open(filename, 'w') as f:
+            f.write(browser.page_source)
+
+    def _get_filename(self):
+
+
+        timestamp = datetime.now().isoformat().replace(':', '.')[:19]
+        return '{folder}/{classname}.{method}-{timestamp}'.format(
+            folder=self.SCREEN_DUMP_LOCATION,
+            classname=self.__class__.__name__,
+            method=self._testMethodName,
+            timestamp=timestamp
+        )
+
+
 
 
 
     def tearDown(self):
+        #self.screen_shots = errorshots.ErrorShots()
+        try:
+            raise AssertionError('screen fail')
+            #print('test')
+
+        except AssertionError:
+            self.take_screenshot(self.driver)
+            tb = sys.exc_info()[2]
+            raise Exception("fail :(").with_traceback(tb)
+            #print('tree')
+            #self.screen_shots.take_screenshot(self.driver)
+
+            #allure.attach(self.driver.save_screenshot('error.png'),
+             #             attahment_type=allure.attachment_type.PNG)
+
+
+        #ry:
+        #   raise AssertionError('screen fail')
+        #xcept AssertionError:
+        #   # print("failed assertion, screenshot take")
+        #   self.driver.save_screenshot('error.png')
+        #   #tb = sys.exc_info()[2]
+        #   #raise Exception("fail :(").with_traceback(tb)
+
+
         self.driver.instance.quit()
 
 
@@ -127,6 +191,17 @@ class TestPhotoNaija(unittest.TestCase):
 #        #self.driver.
 #    def tearDown(self):
 #        self.driver.instance.quit()
+
+
+#def _test_has_failed(self):
+#    for method, error in self._resultForDoCleanups.error:
+#        if error:
+#            return True
+#        return False
+#
+#def _get_filename(self):
+#    timestamp = datetime.now().iso
+
 
 
 

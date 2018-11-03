@@ -9,7 +9,7 @@ class Driver:
 
     def __init__(self, browser_type):
         if browser_type.lower() == 'firefox':
-            self.instance = webdriver.Firefox().
+            self.instance = webdriver.Firefox()
         elif browser_type.lower() == 'ie':
             self.instance = webdriver.Ie()
         elif browser_type.lower() == 'chrome':

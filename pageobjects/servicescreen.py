@@ -42,7 +42,7 @@ class ServiceScreen(BasePage):
     #@pytest.allure.step("Validate page title is visible")
     def validate_page_title_is_visible(self):
         assert self.page_title.is_displayed()
-        assert self.page_title_label == 'SERVICESJ'
+        assert self.page_title_label == 'SERVICESt'
         #assert self.page_title.
 
     def validate_photo_book_design_image(self):
