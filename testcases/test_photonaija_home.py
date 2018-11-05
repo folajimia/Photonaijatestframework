@@ -99,6 +99,8 @@ class TestPhotoNaija(unittest.TestCase):
     def test_service_screen_share_icons(self):
         self.service_screen.validate_share_icons()
 
+
+
     #@pytest.allure.step("Validate the photo book referral service image is visible ")
     #def test_service_screen_photo_referral_image(self):
     #    self.service_screen.validate_referral_service_image()
@@ -111,6 +113,11 @@ class TestPhotoNaija(unittest.TestCase):
 
 
 
+    def _test_has_failed(self):
+        for method, error in self._outcome.errors:
+            if error:
+                return True
+        return False
 
 
 
@@ -142,6 +149,9 @@ class TestPhotoNaija(unittest.TestCase):
 
     def tearDown(self):
         #self.screen_shots = errorshots.ErrorShots()
+        if self._test_has_failed():
+            if not os.path.exists(self.SCREEN_DUMP_LOCATION):
+                os.makedirs(self.SCREEN_DUMP_LOCATION)
         try:
             raise AssertionError('screen fail')
             #print('test')
