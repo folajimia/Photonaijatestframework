@@ -7,7 +7,7 @@ asn1crypto==0.24.0
 astor==0.6.2
 atomicwrites==1.2.1
 attrs==17.4.0
-autobahn==18.3.1
+autobahn==20.12.3
 Automat==0.6.0
 backports.tempfile==1.0rc1
 backports.weakref==1.0rc1
