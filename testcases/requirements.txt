@@ -63,7 +63,7 @@ pluggy==0.7.1
 prompt-toolkit==1.0.14
 protobuf==3.5.2.post1
 ptyprocess==0.5.1
-py==1.6.0
+py==1.10.0
 pyasn1==0.4.2
 pyasn1-modules==0.2.1
 pycparser==2.18
