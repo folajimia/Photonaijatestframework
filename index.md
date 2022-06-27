@@ -1,5 +1,6 @@
 ## Welcome to GitHub Pages
 <html lang="en-us">
+  <meta name='zd-site-verification' content='a6jqm91euncwdvvog56o' /> 
 You can use the [editor on GitHub](https://github.com/folajimia/Photonaijatestframework/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
